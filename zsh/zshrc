@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.zsh/oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -52,7 +52,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -61,7 +61,8 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+export EDITOR='vim'
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -71,7 +72,7 @@ source $ZSH/oh-my-zsh.sh
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -89,6 +90,42 @@ alias log="/var/log"
 alias g='grep -C5 --color=auto'
 alias pacu="sudo pacman -Suy"
 alias paci="sudo pacman -S"
+alias tracepath="tracepath -n"
+alias winbox="sudo wine /opt/mikrotik/winbox.exe"
+alias vimrc="vim ~/.vim/vimrc"
+alias zshrc="vim ~/.zshrc"
+alias known_hosts="vim ~/.ssh/known_hosts"
+alias tel="telnet "
+alias ping="sudo ping -i 0.1 -M do"
+alias initrc="vim /home/sakat/Document/dotfiles/init.sh"
+alias svim='sudo vim'
+ alias console="sudo picocom /dev/ttyUSB0 || sudo picocom /dev/ttyUSB1"
+alias cpuinfo='lscpu' 
+alias fping="fping -g -c 1 "
+alias mkt="cd /home/sakat/Dropbox/Mikrotik/Configuration"
+export LSCOLORS=cxfxexbxdxegedabagacad
+# export LS_COLORS="di=32;48:ln=35;48:so=34;48:pi=31;48:ex=33;48:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43:"
+# black                                     =a : 30
+# # red                                       =b : 31
+# # green                                     =c : 32
+# # brown                                     =d : 33
+# # blue                                      =e : 34
+# # magenta                                   =f : 35
+# # cyan                                      =g : 36
+# # light grey                                =h : 37
+# # bold black, usually shows up as dark grey =A : 40
+# # bold red                                  =B : 41
+# # bold green                                =C : 42
+# # bold brown, usually shows up as yellow    =D : 43
+# # bold blue                                 =E : 44
+# # bold magenta                              =F : 45
+# # bold cyan                                 =G : 46
+# # bold light grey; looks like bright white  =H : 47
+# # default foreground or background          =x : 48
+
+alias vi="vim"
+alias svi="sudo vim"
+alias Py="cd /home/sakat/Dropbox/Python"
 
 extract () {
    if [ -f $1 ] ; then
@@ -111,6 +148,22 @@ extract () {
    fi
  }
 
+loss () {
+   if [ -f $2 ]; then
+  		 while :; do sudo ping -f -c 100 -M do $1 ; sleep 3; done
+   else
+   		 while :; do sudo ping -f -c 100 -M do $1 -s $2 ; sleep 3; done
+  fi
+ }
+
+pg (){
+# edit ping command	
+   if [ -f $2 ]; then
+		   ping $1 
+   else
+		   ping -M do -s $2 $1
+   fi
+ }
 # set -o errexit # <=> set -e make my script exit when a command fails 
 # add || true to command that you alow to fail.
 # set -o nounset # <=> set -u exit when your script tries to use undeclared 
@@ -119,5 +172,4 @@ extract () {
 
 # #!/usr/bin/env bash is more portable than #!/bin/bash
 # Avoid using #!/usr/bin/env bash -e (vs set -e), because whe someone runs your script as bash ./script.sh, the exit on error will be ignored
-
 
