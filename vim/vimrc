@@ -1,7 +1,7 @@
 syntax enable
 set background=dark
 colorscheme solarized
-let g:solarized_termcolors=256
+nnoremap <silent> <F12> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 set number
 set mouse=a
@@ -11,14 +11,39 @@ let maplocalleader=" "
 
 call plug#begin()
 "Initialize plugin system
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
+Plug 'phphong/vim-airline'
+Plug 'tomtom/tcomment_vim'
+Plug 'aperezdc/vim-template'
 call plug#end()
 
 set laststatus=2
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1 "enable display tabline
+let g:airline#extensions#tabline#tab_nr_type = 1 "only show tab number, don't show number of split windows
+" let g:airline#extensions#tabline#show_tab_nr = 1 "enable show tabs
+let g:airline#extensions#tabline#show_buffers = 0 "disable show buffer
+" let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#tab_min_count = 2 "only show tab line when there is >=2 tabs
+let g:airline#extensions#tabline#show_close_button = 0 "disable showing little X button at the far right
+let g:airline#extensions#tabline#show_tab_type = 0 "show whether this is 'tabs' or 'buffers' (because we always use tabs)
+let g:airline#extensions#tabline#fnamemod = ':t' "only show filename in tab
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved' "show path when tab have same file name
+let g:airline#extensions#tagbar#enabled=0 "don't show function name, to save performance
+"disable indent and trailing checks
+let g:airline#extensions#whitespace#enabled = 0
+" let g:airline#extensions#whitespace#checks = [ 'indent'] "airline only check for indentation, not trailing spaces
+" " let g:airline#extensions#whitespace#mixed_indent_algo = 2 "don't show warning for alignment parameter
+" " let g:airline_section_z= '%3p%% %{g:airline_symbols.linenr}%#__accent_bold#%4l%#__restore__#:%3v'
+" " let g:airline_section_z= '%3p%%' "only show percentage, not line/column
+" set noshowmode "just show mode by airline, no need to show mode below
+
+set guifont=Inconsolata-dz\ for\ Powerline:h12
+" set number relativenumber "show current line number
+set cursorline "highlight the current line
+set tabstop=4 "tab visual length is 4 columns
+set display+=lastline "no discussion
+set title "show title (in terminal, like in gui)
+let &showbreak='↪ '
+set encoding=utf-8 "to see the effect, try setting encoding=latin1 (default)
