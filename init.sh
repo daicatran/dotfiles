@@ -26,7 +26,7 @@ cd zsh
 cp -rf oh-my-zsh ~/.oh-my-zsh
 cp -rf zshrc ~/.zshrc
 chsh -l # list all shell 
-sh -s /usr/bin/zsh # make zsh like default shell # not recommend : "exec zsh" on .bashrc
+chsh -s /usr/bin/zsh # make zsh like default shell # not recommend : "exec zsh" on .bashrc
 sudo ln /home/sakat/.zshrc /root/.zshrc # make hard link for root access 
 sudo cp -r /home/sakat/.oh-my-zsh /root # make hard link for root access 
 cd ~/
@@ -125,6 +125,16 @@ sudo systemctl stop sshd.service # stop ssh server after instal ssh
 # ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 admin@IP
 # ssh -C -D 8080 admin@ IP  # dynamic port forwarding
 
+### ssh without password 
+## Client generate key
+# ssh-keygen -r -rsa # don't use any passphare
+# and then upload file id_rsa.pub to server on /home/sakat/.ssh
+
+## Server configuration
+# Create .ssh directory 
+# mkdir ~/.ssh
+# Finally append a's new public key (id_rsa.pub) to b@B:.ssh/authorized_keys and enter b's password one last time
+
 ###
 # Config touchpad by command 
 # http://unix.stackexchange.com/questions/12328/touchpads-click-isnt-working-on-arch-installation-with-gnome
@@ -141,3 +151,5 @@ sudo systemctl stop sshd.service # stop ssh server after instal ssh
 # add the following command on /etc/sudoers for run any command without password or an other config 
 # sakat ALL=(ALL) NOPASSWORD: ALL # Allow username=sakat excute any command without password
 ###
+
+### 
