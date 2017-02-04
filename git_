@@ -1,0 +1,11 @@
+git config --global user.name "sakat"
+git config --global user.email trankhanh.duc@gmail.com
+git config --global core.editor vim 
+git config --list
+git add *
+git status
+git log
+git commit -m "My *nix config file"
+git remote add origin https://github.com/daicatran/dotfiles.git
+git push -u origin master
+

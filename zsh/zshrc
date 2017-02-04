@@ -20,9 +20,6 @@ ZSH_THEME="agnoster"
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
@@ -60,9 +57,10 @@ export ARCHFLAGS="-arch x86_64"
 
 # HOME=~/
 DROPBOX=~/Dropbox
-dotfiles="$DROPBOX/dotfiles"
+dotfiles=$DROPBOX/dotfiles
 Account=$DROPBOX/.Access/Access
 mkt=$DROPBOX/mkt
+
 # for fast access and edit file
 alias known_hosts="vim ~/.ssh/known_hosts"
 alias initrc="vim $dotfiles/init.sh"
@@ -71,6 +69,7 @@ alias zshrc="vim ~/.zshrc"
 alias mkt="cd $DROPBOX/Mkt/Conf"
 alias Py="cd $DROPBOX/Python"
 alias log="/var/log"
+alias cacti_inst="vim ~/Dropbox/Linux/sh-Scri/cacti/cacti_inst.sh"
 
 # Short command
 alias g='grep -C5 --color=auto'
@@ -79,6 +78,7 @@ alias svi="sudo vim"
 alias svim="sudo vim"
 alias tel="telnet "
 alias smv="sudo mv -f "
+alias smkdir="sudo mkdir "
 alias s_cp="sudo cp -r "
 alias winb="sudo wine $mkt/tool/winbox.exe"
 alias ping="sudo ping -i 0.1 -M do"
@@ -140,3 +140,10 @@ pg (){
 # private acount
 alias account="vim $Account"
 source $Account
+
+# alas for unetlab config
+alias R1="telnet 10.30.8.240 32769"
+alias R2="telnet 10.30.8.240 32770"
+alias R3="telnet 10.30.8.240 32771"
+alias R4="telnet 10.30.8.240 32772"
+alias R5="telnet 10.30.8.240 32773"
