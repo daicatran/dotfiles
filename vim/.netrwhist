@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/sakat/Downloads'
+let g:netrw_dirhist_2='/home/sakat/.vim'
+let g:netrw_dirhist_3='/home/sakat/Downloads'
+let g:netrw_dirhist_4='/home/sakat/Downloads/RockNESX'
+let g:netrw_dirhist_5='/home/sakat/.cache'
+let g:netrw_dirhist_6='/home/sakat/.kde4'
+let g:netrw_dirhist_7='/home/sakat'
+let g:netrw_dirhist_8='/home/sakat/Desktop'
+let g:netrw_dirhist_9='/home/sakat/Dropbox/Linux/sh-Scri/cacti'
