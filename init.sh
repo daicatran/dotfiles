@@ -3,6 +3,7 @@
 
 USER="sakat"
 UHOME="/home/$USER"
+dotfiles=$/root/.dotfiles
 alias sln="sudo ln " # make hard link for file as root user
 alias lnd="ln -s " # make hard link for directory
 alias slnd="sudo ln -s " # ... as root user
@@ -23,7 +24,6 @@ else
 fi
 
 $update # update
-cd $UHOME
 
 if [ "$DIST"="ARCH" ];then
 	### PACKER
@@ -40,16 +40,16 @@ if [ "$DIST"="ARCH" ];then
 fi
 ### ZSH
 $install zsh # A very advanced and programmable command interpreter (shell) for UNIX
-lnd zsh $UHOME/.zsh
-slnd zsh /root/.zsh
+lnd $dotfiles/zsh $UHOME/.zsh
+slnd $dotfiles/zsh /root/.zsh
 ln zsh/zshrc $UHOME/.zshrc
 sln zsh/zshrc /root/.zshrc
 chsh -s /usr/bin/zsh # make zsh like default shell # "exec zsh" on .bashrc will make some problem during login
 sudo chsh -s /usr/bin/zsh 
 ### VIM
 $install vim # vi improvced, a hight configurable, improved version of the vi text editor
-lnd vim $UHOME/.vim 
-slnd vim /root/.vim
+lnd $dotfiles/vim $UHOME/.vim 
+slnd $dotfiles/vim /root/.vim
 ### POWERLINE
 $install powerline # Statusline plugin for vim, and provides statuslines and prompts for several other applications, including zsh,bash, tmux, IPython, Awesome, i3 and Qtile
 git clone https://github.com/powerline/fonts.git # Inconsolata font
@@ -63,6 +63,8 @@ sudo chown sakat /usr/bin/dumpcap
 sudo chmod u+s /usr/bin/dumpcap
 sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/sbin/dumpcap
 sudo gpasswd -a $(id -un) wireshark # Add yourself to the wireshark group
+lnd $dotfiles/config/wireshark $UHOME/.config/wireshark
+slnd $dotfiles/config/wireshark /root/.config/wireshark
 ###
 
 test -e /etc/debian_version && DIST="Debian" && grep Ubuntu /etc/lsb-release &> /dev/null && DIST="Ubuntu"
@@ -111,7 +113,7 @@ else
 	$install teamviewer # All-In-One Software for Remote Support and Online Meetings
 	$install spectacle # KDE screenshot capture utility
 	$install fping # A utility to ping multiple hosts at once
-	$install dropbox # A free service that lets you bring your photos, docs, and videos anywhere and share them easily
+	$install dropbox # A free service that lets you bring your photos, docs, and videos anywhere and share them easily.
 fi
 
 ###
