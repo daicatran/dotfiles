@@ -21,6 +21,9 @@ else
                 alias update="sudo pacman -Suy --noconfirm"
                 alias install="sudo pacman -S --noconfirm"
                 alias app-list="pacman -Qe"
+
+				# Disable kwallet
+				ln $dotfiles/config/kwalletrc $UHOME/.config/kwalletrc	
 fi
 
 $update # update
@@ -42,8 +45,8 @@ fi
 $install zsh # A very advanced and programmable command interpreter (shell) for UNIX
 lnd $dotfiles/zsh $UHOME/.zsh
 slnd $dotfiles/zsh /root/.zsh
-ln zsh/zshrc $UHOME/.zshrc
-sln zsh/zshrc /root/.zshrc
+ln $dotfiles/zsh/zshrc $UHOME/.zshrc
+sln $dotfiles/zsh/zshrc /root/.zshrc
 chsh -s /usr/bin/zsh # make zsh like default shell # "exec zsh" on .bashrc will make some problem during login
 sudo chsh -s /usr/bin/zsh 
 ### VIM

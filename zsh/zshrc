@@ -17,16 +17,16 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 USER='sakat'
 UHOME="/home/$USER"
+dotfiles=$UHOME/.dotfiles
 DROPBOX=/$UHOME/Dropbox
-dotfiles=$DROPBOX/dotfiles
 Access=$DROPBOX/.Access/Access
 mkt=$DROPBOX/mkt
 
 # for fast access and edit file
-alias known_hosts="vim ~/.ssh/known_hosts"
+alias known_hosts="vim $UHOME/ssh/known_hosts"
 alias initrc="vim $dotfiles/init.sh"
-alias vimrc="vim ~/.vim/vimrc"
-alias zshrc="vim $dotfiles/zshrc"
+alias vimrc="vim $dotfiles/vim/vimrc"
+alias zshrc="vim $dotfiles/zsh/zshrc"
 alias mkt="cd $DROPBOX/Mkt/Conf"
 alias Py="cd $DROPBOX/Python"
 alias log="/var/log"
@@ -39,16 +39,29 @@ alias tel="telnet "
 alias smv="sudo mv -f "
 alias smkdir="sudo mkdir "
 alias s_cp="sudo cp -r "
-alias winb="sudo wine $mkt/tool/winbox.exe"
+alias winb="sudo wine /home/sakat/Dropbox/mkt/tool/winbox.exe"
 alias ping="sudo ping -i 0.1 -M do"
 alias fping="fping -g -c 1 "
 alias tracepath="tracepath -n"
-alias console="sudo picocom /dev/ttyUSB0 || sudo picocom /dev/ttyUSB1"
+
+console (){
+   dev1="/dev/ttyUSB0"
+   dev2="/dev/ttyUSB1"
+   if [ -e $dev1 ]; then
+		  sudo picocom $dev1 
+   elif [ -e $dev2 ]; then
+		  sudo picocom $dev2
+   else
+		  echo "--->>>  Please check your cable !!!"
+  fi
+}
+	
 alias rm="rm -rf"
 alias lnd="ln -sf"
 alias slnd="sudo ln -sf"
 alias sln="sudo ln"
 alias la="ls -a"
+alias nn=$DROPBOX/NN
 
 test -e /etc/debian_version && DIST="Debian" && grep Ubuntu /etc/lsb-release &> /dev/null && DIST="Ubuntu"
 if [ "$DIST" = "Ubuntu" ]  || [ "$DIST" = "Debian" ]; then
@@ -94,12 +107,12 @@ else
 fi
 }
 
-
 pg (){
 # edit ping command	
    if [ -f $2 ]; then
 		   ping $1 
    else
+		   # let $2=$2 - 18
 		   ping -s $2 $1
    fi
  }
