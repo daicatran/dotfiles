@@ -4,6 +4,7 @@
 USER="sakat"
 UHOME="/home/$USER"
 dotfiles=$/root/.dotfiles
+DE="KDE"
 alias sln="sudo ln " # make hard link for file as root user
 alias lnd="ln -s " # make hard link for directory
 alias slnd="sudo ln -s " # ... as root user
@@ -124,7 +125,8 @@ fi
 # http://unix.stackexchange.com/questions/12328/touchpads-click-isnt-working-on-arch-installation-with-gnome
 # synclient TapButton1=1 # Enable Tap To Click
 # synclient HorizTwoFingerScroll=1 # Enable Horizon Finger Scroll
-
+ln $dotfiles/config/touchpadrc $UHOME/.config/touchpadrc
+sln $dotfiles/config/touchpadrc /root/.config/touchpadrc
 ###
 # "user_list host_list=effective_user_list tag_list command_list"
 # user_list :  list of users or a user alias that has already been set.
@@ -136,4 +138,11 @@ fi
 # sakat ALL=(ALL) NOPASSWORD: ALL # Allow username=sakat excute any command without password
 ###
 
-### 
+### ibus setup 
+if [ "$DE"="KDE"]; then
+	$install ibus # Next Generation Input Bus for Linux
+	$install ibus-qt # IBus qt library and IBus qt input method plugin
+	$install ibus-bogo # Vietnamese input method for IBus with Bogo engine
+	$install ibus-unikey # IBus module for Vietnamese Keyboard
+	# to start : ibus-daemon --xim -xd
+fi

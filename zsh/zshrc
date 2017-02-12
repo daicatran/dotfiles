@@ -1,8 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.zsh/oh-my-zsh
 
-ZSH_THEME="robbyrussell"
-# ZSH_THEME="agnoster"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
 plugins=(git colored-man-pages)
 
@@ -13,7 +13,7 @@ export LANG=en_US.UTF-8
 export EDITOR='vim'
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 USER='sakat'
 UHOME="/home/$USER"
@@ -40,7 +40,7 @@ alias smv="sudo mv -f "
 alias smkdir="sudo mkdir "
 alias s_cp="sudo cp -r "
 alias winb="sudo wine /home/sakat/Dropbox/mkt/tool/winbox.exe"
-alias ping="sudo ping -i 0.1 -M do"
+alias ping="sudo ping -i 0.05 -M do"
 alias fping="fping -g -c 1 "
 alias tracepath="tracepath -n"
 
@@ -70,6 +70,7 @@ if [ "$DIST" = "Ubuntu" ]  || [ "$DIST" = "Debian" ]; then
 		alias upgrade="sudo apt-get upgrade "
 		alias install="sudo apt-get install "
 		alias uninstall="sudo apt-get remove "
+		alias service-list="service --status-all" # list all loader service
 else
 		# For Arch Linux
 		alias update="sudo pacman -Suy"
@@ -112,7 +113,6 @@ pg (){
    if [ -f $2 ]; then
 		   ping $1 
    else
-		   # let $2=$2 - 18
 		   ping -s $2 $1
    fi
  }
@@ -155,3 +155,8 @@ source $Access
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
+# sudo route add -net 10.30.254.0 netmask 255.255.255.0 gw 10.30.8.1
+#
+
+# lastlog # Reports the most recent login of all users or of a given user
+# last $USER # show a listing of last logged in user with user and ip address
