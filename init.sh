@@ -12,16 +12,18 @@ alias slnd="sudo ln -s " # ... as root user
 test -e /etc/debian_version && DIST="Debian" && grep Ubuntu /etc/lsb-release &> /dev/null && DIST="Ubuntu"
 if [ "$DIST" = "Ubuntu" ]  || [ "$DIST" = "Debian" ]; then
                 # Truly non interactive some command
-                alias update="sudo apt-get update"
-                alias upgrade="sudo apt-get upgrade"
-                alias install="sudo apt-get install"
+                alias update="sudo apt-get update -y"
+                alias upgrade="sudo apt-get upgrade -y"
+                alias install="sudo apt-get install -y"
                 alias uninstall="sudo apt-get remove"
 else
 				DIST="ARCH"
                 # For Arch Linux
-                alias update="sudo pacman -Suy --noconfirm"
+                alias update="sudo pacman -Suy --noconfirm" 
+                alias upgrade="sudo pacman -Suy --noconfirm"
                 alias install="sudo pacman -S --noconfirm"
                 alias app-list="pacman -Qe"
+				alias uninstall="sudo pacman -R " # consider using -Rscn
 
 				# Disable kwallet
 				ln $dotfiles/config/kwalletrc $UHOME/.config/kwalletrc	
@@ -41,6 +43,10 @@ if [ "$DIST"="ARCH" ];then
 	sudo pacman -U packer-20150808-1-any.pkg.tar.xz
 	cd ..
 	sudo rm -dR packer 
+	echo "using packer alternate pacman !!!"
+	alias update="packer -Suy --noconfirm"
+	alias upgrade="packer -Suy --noconfirm"
+	alias install="packer -S --noconfirm"
 fi
 
 ### ZSH
@@ -112,6 +118,7 @@ else
 	$install teamviewer # All-In-One Software for Remote Support and Online Meetings
 	$install spectacle # KDE screenshot capture utility
 	$install dropbox # A free service that lets you bring your photos, docs, and videos anywhere and share them easily.
+	$install flashplugin # Adobe Flash Player
 fi
 
 echo "Install for both Debian and Archlinux !"
@@ -128,6 +135,7 @@ $install net-tools # ifconfig command -  Configuration tools for Linux networkin
 $install thunderbird # Mail clinet
 $install okular # Document Viewer
 $install picocom # Minimal dump-terminal emulation program, very much like minicom
+$install tcpdump # A tool for network monitoring and data acquisition
 
 ### Config touchpad 
 synclient TapButton1=1 # Enable Tap To Click

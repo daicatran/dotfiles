@@ -41,7 +41,7 @@ alias tel="telnet "
 alias smv="sudo mv -f "
 alias smkdir="sudo mkdir "
 alias s_cp="sudo cp -r "
-alias winb="sudo wine /home/sakat/Dropbox/mkt/tool/winbox.exe"
+alias winb="sudo wine $DROPBOX/mkt/tool/winbox.exe"
 alias ping="sudo ping -i 0.05 -M do"
 alias fping="fping -g -c 1 "
 alias tracepath="tracepath -n"
@@ -68,15 +68,18 @@ alias nn=$DROPBOX/NN
 test -e /etc/debian_version && DIST="Debian" && grep Ubuntu /etc/lsb-release &> /dev/null && DIST="Ubuntu"
 if [ "$DIST" = "Ubuntu" ]  || [ "$DIST" = "Debian" ]; then
 		# Truly non interactive some command
-		alias update="sudo apt-get update "
-		alias upgrade="sudo apt-get upgrade "
-		alias install="sudo apt-get install "
+		alias update="sudo apt-get update -y"
+		alias upgrade="sudo apt-get upgrade -y"
+		alias install="sudo apt-get install -y"
 		alias uninstall="sudo apt-get remove "
 		alias service-list="service --status-all" # list all loader service
 else
 		# For Arch Linux
-		alias update="sudo pacman -Suy"
-		alias install="sudo pacman -S"
+		# alias update="sudo pacman -Suy --noconfirm"
+		alias update="packer -Suy --noconfirm"
+		alias upgrade="packer -Suy --noconfirm"
+		alias install="packer -S --noconfirm"
+		alias uninstall="sudo pacman -R "
 		alias app-list="pacman -Qe"
 		alias service-list="systemd-analyze blame" # list all loader service
 fi
